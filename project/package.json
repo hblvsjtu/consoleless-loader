@@ -1,0 +1,127 @@
+{
+    "name": "booster_normal_js",
+    "version": "0.0.1",
+    "description": "一个快速启动的环境",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm run test && webpack-dev-server --open --config ./build/webpack.dev.js",
+        "build": "npm run test && webpack --config ./build/webpack.prod.js",
+        "lint": "npx eslint",
+        "fix": "npx eslint --fix",
+        "test": "jest",
+        "pretty": "pretty-quick",
+        "genlog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit --amend --no-edit",
+        "commit": "git-cz"
+    },
+    "keywords": [
+        "quick",
+        "environment"
+    ],
+    "author": "冰红茶",
+    "license": "MIT",
+    "dependencies": {
+        "lodash-es": "^4.17.15"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.7.4",
+        "@babel/plugin-transform-runtime": "^7.7.4",
+        "@babel/preset-env": "^7.7.4",
+        "@babel/preset-stage-2": "^7.0.0",
+        "@babel/runtime": "^7.7.4",
+        "@babel/runtime-corejs3": "^7.11.2",
+        "babel-loader": "^8.0.0-beta.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "commitizen": "^4.2.1",
+        "conventional-changelog-cli": "^2.1.0",
+        "copy-webpack-plugin": "^5.0.5",
+        "css-loader": "^0.28.4",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^7.2.0",
+        "eslint-config-airbnb-base": "^14.2.0",
+        "eslint-friendly-formatter": "^4.0.1",
+        "eslint-loader": "^3.0.2",
+        "eslint-plugin-import": "^2.21.2",
+        "eslint-plugin-prettier": "^3.1.4",
+        "file-loader": "^0.11.2",
+        "html-webpack-plugin": "^3.2.0",
+        "husky": "^4.3.0",
+        "jest": "^26.0.1",
+        "less": "^3.10.3",
+        "less-loader": "^5.0.0",
+        "lint-staged": "^8.0.0",
+        "mini-css-extract-plugin": "^0.12.0",
+        "postcss-loader": "^3.0.0",
+        "prettier": "^2.1.2",
+        "pretty-quick": "^3.0.2",
+        "style-loader": "^0.18.2",
+        "uglifyjs-webpack-plugin": "^2.2.0",
+        "webpack": "^4.41.2",
+        "webpack-bundle-analyzer": "^3.6.0",
+        "webpack-cli": "^3.3.10",
+        "webpack-dev-server": "^3.9.0",
+        "webpack-merge": "^4.2.2"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog",
+            "maxHeaderWidth": 100,
+            "maxLineWidth": 100,
+            "defaultType": "",
+            "defaultScope": "",
+            "defaultSubject": "",
+            "defaultBody": "",
+            "defaultIssues": "",
+            "types": {
+                "feat": {
+                    "description": "A new feature",
+                    "title": "Features"
+                },
+                "fix": {
+                    "description": "A new fix",
+                    "title": "Features"
+                },
+                "docs": {
+                    "description": "A new docs",
+                    "title": "Features"
+                },
+                "style": {
+                    "description": "A new style",
+                    "title": "Features"
+                },
+                "refactor": {
+                    "description": "A new refactor",
+                    "title": "refactor"
+                },
+                "test": {
+                    "description": "A new test",
+                    "title": "test"
+                },
+                "revert": {
+                    "description": "A new revert",
+                    "title": "revert"
+                },
+                "config": {
+                    "description": "A new config",
+                    "title": "config"
+                },
+                "chore": {
+                    "description": "A new chore",
+                    "title": "chore"
+                }
+            }
+        }
+    },
+    "lint-staged": {
+        "{src,test}/**/*.js": [
+            "eslint",
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged && pretty-quick --staged",
+            "pre-push": "npm run test"
+        }
+    }
+}
