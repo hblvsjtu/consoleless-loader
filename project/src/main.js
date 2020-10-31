@@ -16,6 +16,8 @@ const component = () => {
 
 document.body.appendChild(component());
 
+console.log('hello, i am consolelog');
+
 export default class MyModele {
     constructor(a) {
         this.a = a;
